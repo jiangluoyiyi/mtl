@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>漫陀罗</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="referrer" content="no-referrer" /><!--把referrer设置成no-referrer，这样发送请求不会带上referrer信息，对方服务器无法拦截-->
+        <link rel="icon" href="res/漫.png" type="image/x-icon">
+        <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <style>
+            html,body{
+                width:100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                background-color: #CCFFFF;
+            }
+            body{
+                width:900px;
+                min-height: 768px;
+                height: auto;
+                background-color: #FFF;
+                margin:0 auto;
+                border-radius: 10px;
+                display: flex;
+                flex-direction: column;
+                flex:1 0 auto;
+                background-attachment: fixed;
+                background-image: url("res/石上.jpg");
+                background-size: 700px;
+                background-repeat: no-repeat;
+                background-position:32% 150px;
+            }
+            header#head{
+                width:100%;
+                height:100px;
+                background-color: #FFCCCC;
+                border-radius: 10px 10px 0px 0px;
+                flex:0 0 auto;
+                background-image: url("res/壁纸1.png");
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position-y:-120px;
+            }
+            #cotent{
+                width:100%;
+                min-height: 768px;
+                position: relative;
+                margin-top: 20px;
+                margin:0 auto;
+                flex:1 1 auto;
+            }
+            footer#foot{
+                width:100%;
+                height:50px;
+                background-color: #CCCCFF;
+                text-align: center;
+                color:#FFF;
+                line-height: 50px;
+                border-radius: 0px 0px 10px 10px;
+                margin-top:20px;
+                flex: 0 0 auto;
+            }
+            .menulist{
+                float:left;
+                position: relative;
+                top:50%;
+                transform: translateY(-50%);
+                -webkit-user-select:none;
+            }
+            .menulist>li,.menulist>li>a{
+                text-decoration: none;
+                display: inline;
+                margin-left: 10px;
+                color:rgb(255, 255, 255);
+                font-weight: bold;
+            }
+            .menulist>li:hover{
+                color:#05f7ff;
+            }
+            .searchbox{
+                float: right;
+                margin-right: 5px;;
+                margin-top:60px;
+            }
+            .mhcover{
+                width:100px;
+                height:130px;
+                float: left;
+                background-position: top;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .mhname{
+                width:50px;
+                overflow: hidden;
+                float: left;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                -webkit-user-select:none;
+            }
+            .mhstatus{
+                color:lightblue;
+                font-size: 15px;
+                margin-left: 5px;
+                -webkit-user-select:none;
+            }
+            .jishu{
+                width:50px;
+                height:50px;
+                float:left;
+                margin-left:20px;
+                margin-top:10px;
+                text-align: center;
+                line-height: 50px;
+                border:#CCCCCC solid;
+            }
+            .intr::-webkit-scrollbar {display:none}
+            .flitem,.title{
+                width:150px;
+                height:200px;
+                text-align: center;
+                font-size: larger;
+                color:#949393;
+                border-radius: 10px;
+                border:#9feffd 0.5px solid;
+            }
+            .title{
+                background-color: #9feffd;
+                transition: 1s;
+            }
+            .flitem:hover .title{
+                transform: rotateY(360deg);
+                background-color: #FFCCCC;
+            }
+            @keyframes anim{
+                from{
+                    transform: rotate(0);
+                }to{
+                    transform: rotate(360deg);
+                }
+            }
+            #animplay{
+                width:100px;
+                height:100px;
+                margin-left:10px;
+                float: left;
+                background-image: url("res/漫陀罗logo.png");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 100px;
+                transition: 0.5s;
+                animation: none;
+                text-align: center;
+                line-height: 100px;
+                border-radius: 50px;
+            }
+            .phitem{
+                width:720px;
+                height:80px;
+                margin:20px auto;
+                -webkit-user-select:none;
+            }
+            .phnum{
+                width: 80px;
+                height:80px;
+                font-size: 40px;
+                font-weight: bolder;
+                text-align: center;
+                line-height: 80px;
+                background-color: #CCCCCC;
+                color:#FFF;
+                float:left;
+                border:rgb(165, 162, 162) solid;
+                transition: 0.5s;
+            }
+            .phitem:hover .phnum{
+                background-color: #887863;
+            }
+            .phfm{
+                width:150px;
+                height:80px;
+                object-fit: cover;
+                float:left;
+            }
+            .phjs{
+                width:400px;
+                margin-top:5px;
+                margin-left:10px;
+                color:#797676;
+            }
+            #pausem{
+                width:35px;
+                height:35px;
+                position: relative;
+                left:46.5px;
+                top:-6.5px;
+                background-color: transparent;
+                background-image:url("res/暂停.png");
+                background-repeat: no-repeat;
+                background-size: 25px 25px;
+                background-position: center;
+                border-radius: 12.5px;
+                display: none;
+                transition: 0.5s;
+            }
+            .bgbtn{
+                width:40px;
+                height:40px;
+                position: relative;
+                left:860px;
+            }
+            .bgbtn>#btn{
+                width:40px;
+                height: 40px;
+                background-image: url("res/衣服.png");
+                background-repeat: no-repeat;
+                background-size: 30px 30px;
+                margin: 0 auto;
+            }
+        </style>
+        
+    </head>
+    <body onload="syData()">
+         <header id="head">
+            <div class="logo" id="animplay" title="" onclick="animclick()"></div>
+            
+           <ul class="menulist">
+               <li id="main" onclick="syData()">首页✧</li>
+               <li id="fenl" onclick="flView()">分类</li>
+               <li id="paih" onclick="phData()">排行</li>
+               <li id="yiyan" onclick="yyData(),yyMusic()">一言</li>
+           </ul>
+           <div class="searchbox">
+                <input id="search" type="text" placeholder="搜索漫画" style="text-indent: 5px;">
+                <input id="btnsearch" type="button" value="搜索" onchange="syData()">
+           </div>
+           <div class="bgbtn">
+            <input type="file" id="fileselect" accept="image/*" style="display: none;">
+            <div id="btn" title="壁纸"></div>
+        </div>
+           <div id="pausem" onclick="pauseclick()"></div>
+           
+         </header>
+         
+         <div id="content">
+            <div style="height:768px;">
+                
+             </div>
+         </div>
+
+         <audio id="music" controls="no" autoplay="autoplay" style="display: none;" src="#">
+        </audio>
+         <footer id="foot">
+            <a style="color:#FFF;text-decoration: none;" href="src/aboutinfoot.html" target="_blank">漫陀罗-Camila</a>
+         </footer>
+         <script src="src/getdata.js"></script>
+         <script src="src/music.js"></script>
+         <script>
+             var btn=document.getElementById("btn");
+             var file=document.getElementById("fileselect");
+             var head=document.getElementById("head");
+             if(typeof FileReader == 'undefined'){ 
+                alert("浏览器不支持FileReader");
+            }
+             btn.onclick=function(){
+                 file.click();
+                 file.onchange=function(){
+                     var ffile=file.files[0];
+                     var reader=new FileReader();
+                     reader.onload=function(){
+                        console.log(reader.result);
+                        head.style.backgroundImage="url('"+ reader.result+"')";
+                     }
+                     if(ffile){
+                         reader.readAsDataURL(ffile);
+                     }
+                 }
+             }
+         </script>
+    </body>
+</html>
