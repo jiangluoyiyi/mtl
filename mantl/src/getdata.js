@@ -285,7 +285,7 @@ function getyy(){
         $.get(ypath,function(data){
             console.log(data);
             $("#content").empty();
-            $("#content").append('<div class="box" style="width:100%;height:790px;">'+
+            $("#content").append('<div class="box" style="width:100%;height:800px;">'+
                                 '<div class="yyan" style="border:solid;width:auto;height:auto;min-height:200px;max-height:500px;float:right;margin-right:100px;margin-top:100px;padding:15px;writing-mode: tb-rl;font-size: 20px;font-weight: bolder;">'+
                                     '<span class="text" style="width:100px;height:400px;line-height: 50px;text-indent: 2em;">『'+
                                         data.hitokoto+
