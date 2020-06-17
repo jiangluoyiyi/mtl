@@ -9,8 +9,6 @@ function getUrlpid(name){
     let r=str.search.substr(1).match(reg);
     if(r!=null){
         plid=r[2];
-    }else{
-        plid="2829896389";
     }
     console.log("歌单id:"+plid);
 }
