@@ -1,5 +1,5 @@
 var mpath="https://api.imjad.cn/cloudmusic/?";
-var plid=2126329014; //歌单id
+var plid=2829896389; //歌单id
 var midlist=[];//记录歌单信息
 var middata={};
 
