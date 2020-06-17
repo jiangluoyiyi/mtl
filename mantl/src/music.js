@@ -10,7 +10,7 @@ function getUrlpid(name){
     if(r!=null){
         plid=r[2];
     }else{
-        plid="2126329014";
+        plid="2829896389";
     }
     console.log("歌单id:"+plid);
 }
